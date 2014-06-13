@@ -406,7 +406,7 @@
       google.setOnLoadCallback(function () {
         loaded = true;
       });
-      google.load("visualization", "1.0", {"packages": ["corechart"]});
+      google.load("visualization", "1.0", {"packages": ["corechart"], "language": "pt_BR"});
 
       var waitForLoaded = function (callback) {
         google.setOnLoadCallback(callback); // always do this to prevent race conditions (watch out for other issues due to this)
@@ -654,7 +654,7 @@
 
     // see if one series or multiple
     if (!isArray(series) || typeof series[0] !== "object" || isArray(series[0])) {
-      series = [{name: "Value", data: series}];
+      series = [{name: "Valor", data: series}];
       opts.hideLegend = true;
     } else {
       opts.hideLegend = false;

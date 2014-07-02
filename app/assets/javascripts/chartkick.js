@@ -491,6 +491,7 @@
         for (i = 0; i < series.length; i++) {
           s = series[i];
           data.addColumn("number", s.name);
+          data.addColumn({type:'number', role:'annotation', calc: "stringify"});
 
           for (j = 0; j < s.data.length; j++) {
             d = s.data[j];
@@ -505,7 +506,12 @@
         var rows2 = [];
         for (i in rows) {
           if (rows.hasOwnProperty(i)) {
-            rows2.push([(columnType === "datetime") ? new Date(toFloat(i)) : i].concat(rows[i]));
+            var row = [(columnType === "datetime") ? new Date(toFloat(i)) : i];
+            for(j = 0; j < rows[i].length; j++){
+              var element = rows[i][j]
+              row.push(element, element); 
+            }
+            rows2.push(row);
           }
         }
         if (columnType === "datetime") {
